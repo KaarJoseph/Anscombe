@@ -2,9 +2,11 @@
 <p align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/b/b0/Logo_Universidad_Polit%C3%A9cnica_Salesiana_del_Ecuador.png" alt="Logo UPS" width="300"/>
 </p>
-**Carrera de Ingeniería en Ciencias de la Computación** <br>
-**Período Académico:** 2024-2025 <br>
+
+## Carrera de Ingeniería en Ciencias de la Computación
+**Período Académico:** 2024-2025  
 **Sede:** Cuenca
+
 
 ---
 
