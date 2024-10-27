@@ -1,0 +1,83 @@
+---
+title: "RegresiónLineal"
+author: "Joseph"
+date: "2024-10-21"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introducción
+
+En este análisis, vamos a aplicar una regresión lineal al conjunto de datos "bullseye" del Datasaurus Dozen. Este conjunto de datos es parte de una colección creada para ilustrar cómo las estadísticas resumen (como medias y desviaciones estándar) pueden ser similares en diferentes datasets, mientras que las distribuciones subyacentes de los datos pueden ser completamente distintas. La visualización de datos es esencial en estos casos para capturar patrones únicos.
+
+## Cargar Librerías y Datos
+
+Cargamos las librerías necesarias para manipulación de datos y visualización, además de la librería datasauRus que contiene el conjunto Datasaurus Dozen.
+
+```{r}
+# Cargar librerías
+library(tidyverse)  
+library(datasauRus)   
+library(dplyr)        
+library(ggplot2)      
+```
+
+Filtramos el conjunto "bullseye" de Datasaurus Dozen.
+
+```{r}
+# Filtrar el conjunto de datos "bullseye"
+bullseye_data <- datasaurus_dozen %>% filter(dataset == "bullseye")
+```
+
+## Resumen Estadístico del Conjunto "bullseye"
+
+Calculamos un resumen estadístico básico para verificar las estadísticas generales del conjunto antes de aplicar la regresión lineal.
+
+```{r}
+# Resumen estadístico
+summary(bullseye_data)
+```
+
+## Aplicación de la Regresión Lineal
+
+Aplicamos una regresión lineal en el conjunto "bullseye", donde la variable independiente es x y la variable dependiente es y. Este modelo nos permitirá observar la relación entre ambas variables.
+
+```{r}
+# Aplicar la regresión lineal
+modelo_regresion <- lm(y ~ x, data = bullseye_data)
+
+# Resumen del modelo de regresión
+summary(modelo_regresion)
+```
+## Interpretación del Modelo de Regresión
+
+- Intercepto y Pendiente: Los valores obtenidos indican cómo se espera que varíe y en función de x.
+- R-cuadrado: El coeficiente de determinación nos muestra qué tan bien se ajusta el modelo a los datos. Un valor de R-cuadrado más alto indica un mejor ajuste.
+- p-valor: Nos ayuda a determinar si la relación entre x e y es significativa estadísticamente.
+
+## Visualización de la Regresión Lineal
+
+Generamos una gráfica de dispersión del conjunto "bullseye" con una línea de regresión para visualizar la relación lineal entre x e y.
+
+```{r}
+# Gráfica de dispersión con línea de regresión
+ggplot(bullseye_data, aes(x = x, y = y)) +
+  geom_point(color = "blue", size = 2) +             # Puntos de datos en azul
+  geom_smooth(method = "lm", se = FALSE, color = "red") + # Línea de regresión en rojo
+  labs(title = "Regresión Lineal en el Conjunto 'Bullseye'",
+       subtitle = "Línea de regresión ajustada en el conjunto 'bullseye'",
+       x = "Variable X",
+       y = "Variable Y") +
+  theme_minimal()                                    # Estilo limpio y minimalista
+```
+
+## Análisis de la Visualización
+- Distribución de los puntos: La distribución de los puntos azules en relación con la línea de regresión nos permite observar si existe una relación lineal.
+- Línea de regresión: La línea roja indica el ajuste lineal entre x e y, mostrando la tendencia general en el conjunto "bullseye".
+
+## Conclusión
+
+En este análisis del conjunto "bullseye" del Datasaurus Dozen, observamos que la regresión lineal nos ayuda a visualizar la relación entre x e y. Sin embargo, al igual que otros conjuntos del Datasaurus, aunque las estadísticas resumen puedan parecer similares, la visualización revela una estructura única en los datos, resaltando la importancia de la exploración visual en el análisis de datos.
